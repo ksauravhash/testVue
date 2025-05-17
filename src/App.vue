@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { provide, reactive, readonly } from 'vue';
-import { ADD_TO_CART_KEY, CART_KEY, REMOVE_FROM_CART_KEY, type CartType } from './keys';
+import { ADD_TO_CART_KEY, CART_KEY, REMOVE_COMPLETELY_FROM_CART_KEY, REMOVE_FROM_CART_KEY, type CartType } from './keys';
 
 
 const cart = reactive<CartType>({});
@@ -19,12 +19,17 @@ function removeFromCart(n: number) {
     cart[num] = 0;
   else if (cart[num] >= 1)
     cart[num]--;
+}
 
+function removeCompletelyFromCart(n:number) {
+  const num = n.toString();
+  delete cart[num];
 }
 
 provide(CART_KEY, readonly(cart));
 provide(ADD_TO_CART_KEY, addToCart);
 provide(REMOVE_FROM_CART_KEY, removeFromCart);
+provide(REMOVE_COMPLETELY_FROM_CART_KEY, removeCompletelyFromCart);
 
 </script>
 
