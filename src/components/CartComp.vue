@@ -33,6 +33,9 @@ const cartCount = computed(() => {
           </span>
         </div>
       </template>
+      <RouterLink to="/checkout">
+        <ButtonComp class="cartBtn">Checkout</ButtonComp>
+      </RouterLink>
       <ButtonComp @handleClick="togglePopUp" class="cartBtn">Close</ButtonComp>
     </div>
   </div>
@@ -93,7 +96,7 @@ const cartCount = computed(() => {
 }
 
 .cartBtn {
-  margin: 'auto';
+  margin: 5px;
   display: 'block'
 }
 </style>
