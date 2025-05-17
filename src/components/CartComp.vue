@@ -14,7 +14,7 @@ function togglePopUp() {
 
 const props = defineProps<CartPropType>();
 
-const cartCount = computed(()=> {
+const cartCount = computed(() => {
   return Object.keys(props.cart).length;
 })
 
@@ -36,7 +36,7 @@ const cartCount = computed(()=> {
           </span>
         </div>
       </template>
-      <ButtonComp @handleClick="togglePopUp" style="{margin: 'auto', display: 'block'}">Close</ButtonComp>
+      <ButtonComp @handleClick="togglePopUp" class="cartBtn">Close</ButtonComp>
     </div>
   </div>
 
@@ -93,5 +93,10 @@ const cartCount = computed(()=> {
 .cartItem>span {
   background-color: #444;
   padding: 5px;
+}
+
+.cartBtn {
+  margin: 'auto';
+  display: 'block'
 }
 </style>
