@@ -8,7 +8,7 @@ type CardEmitType = {
 }
 
 type CardPropType = {
-  imageTag: number;
+  robotNum: number;
   numBought?: number;
 }
 
@@ -21,10 +21,10 @@ defineProps<CardPropType>();
 <template>
   <div class="card">
     <div class="img">
-      <img :src="'https://robohash.org/' + imageTag" />
+      <img :src="'https://robohash.org/' + robotNum" />
     </div>
     <div class="body">
-      <h3>Robot Number: {{ imageTag }}</h3>
+      <h3>Robot Number: {{ robotNum }}</h3>
       <div class="actionButtons">
         <ButtonComp v-if="!numBought" colored @handleClick="$emit('handleAdd');" fullWidth>Add to the cart!</ButtonComp>
         <template v-else>

@@ -1,39 +1,23 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { inject } from "vue";
 import Card from "./CardComp.vue";
 import CartComp from './CartComp.vue';
+import { type CartType, type CartFunctionType, CART_KEY, ADD_TO_CART_KEY, REMOVE_FROM_CART_KEY } from "@/keys";
 
-export type CartType = Record<string, number>;
+const cart = inject<CartType>(CART_KEY);
+const addToCart = inject<CartFunctionType>(ADD_TO_CART_KEY);
+const removeFromCart = inject<CartFunctionType>(REMOVE_FROM_CART_KEY);
 
-const cart = reactive<CartType>({});
-
-function addToCart(n: number) {
-  const num = n.toString();
-  if (!cart[num])
-    cart[num] = 1;
-  else
-    cart[num]++;
-}
-
-function removeFromCart(n: number) {
-  const num = n.toString();
-  if (!cart[num])
-    cart[num] = 0;
-  else if (cart[num] >= 1)
-    cart[num]--;
-
-}
-
-
+if (!addToCart || !removeFromCart || !cart) throw new Error("Something is not provided.");
 
 </script>
 
 <template>
   <div class="card-container">
-    <Card v-for="num in 26" :imageTag="num" :key="num" :numBought="cart[num]" @handleAdd="addToCart(num)"
+    <Card v-for="num in 26" :robotNum="num" :key="num" :numBought="cart[num]" @handleAdd="addToCart(num)"
       @handleRemove="removeFromCart(num)" />
   </div>
-  <CartComp :cart="cart"/>
+  <CartComp :cart="cart" />
 </template>
 
 <style scoped>

@@ -1,21 +1,18 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 import ButtonComp from './ButtonComp.vue';
-import type { CartType } from '@/components/HomeView.vue';
+import { CART_KEY, type CartType } from '@/keys';
 const showPopUp = ref(false);
 
-type CartPropType = {
-  cart: CartType
-}
+const cart = inject<CartType>(CART_KEY, {});
 
 function togglePopUp() {
   showPopUp.value = !showPopUp.value;
 }
 
-const props = defineProps<CartPropType>();
 
 const cartCount = computed(() => {
-  return Object.keys(props.cart).length;
+  return Object.keys(cart).length;
 })
 
 </script>
