@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import ButtonComp from './ButtonComp.vue';
-import type { CartType } from '@/App.vue';
+import type { CartType } from '@/components/HomeView.vue';
 const showPopUp = ref(false);
 
 type CartPropType = {
