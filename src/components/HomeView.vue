@@ -3,6 +3,7 @@ import { inject } from "vue";
 import Card from "./CardComp.vue";
 import CartComp from './CartComp.vue';
 import { type CartType, type CartFunctionType, CART_KEY, ADD_TO_CART_KEY, REMOVE_FROM_CART_KEY } from "@/keys";
+import ButtonComp from "./ButtonComp.vue";
 
 const cart = inject<CartType>(CART_KEY);
 const addToCart = inject<CartFunctionType>(ADD_TO_CART_KEY);
@@ -18,6 +19,12 @@ if (!addToCart || !removeFromCart || !cart) throw new Error("Something is not pr
       @handleRemove="removeFromCart(num)" />
   </div>
   <CartComp :cart="cart" />
+  <div class="redditButtonContainer">
+    <RouterLink to="/reddit">
+
+      <ButtonComp>Reddit Comments</ButtonComp>
+    </RouterLink>
+  </div>
 </template>
 
 <style scoped>
@@ -29,5 +36,11 @@ if (!addToCart || !removeFromCart || !cart) throw new Error("Something is not pr
   max-width: 1000px;
   margin: auto;
   margin-top: 40px;
+}
+
+.redditButtonContainer {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
 }
 </style>
