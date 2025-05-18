@@ -9,6 +9,7 @@ type ButtonPropType = {
   fullWidth?: boolean;
   rounded?: boolean;
   colored?: boolean;
+  charButton?: boolean;
 }
 
 defineEmits<ButtonEmits>();
@@ -18,7 +19,8 @@ const buttonStyle = {
   width: props.fullWidth ? '100%' : 'auto',
   borderRadius: props.rounded ? '50%' : 'auto',
   background: props.colored? 'linear-gradient(to right, #7f5af0, #2cb67d)': '#333',
-  color: 'white'
+  color: 'white',
+  padding: props.charButton? 'auto' : '10px'
 }
 
 </script>
@@ -33,12 +35,13 @@ const buttonStyle = {
 <style scoped>
 button {
   border: none;
-  padding: 10px;
   cursor: pointer;
   font-family: 'Fira Code', monospace;
   border-radius: 8px;
   font-weight: bold;
   transition: background 0.3s, transform 0.2s;
+  min-width: 30px;
+  min-height: 30px;
 }
 
 button:hover {
