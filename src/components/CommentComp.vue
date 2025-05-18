@@ -41,7 +41,7 @@ const props = defineProps<RedditCommentType>();
       {{ props.data.body }}
     </div>
     <template v-if="data.replies">
-      <ButtonComp @handleClick="showChildNode = !showChildNode" charButton>+</ButtonComp>
+      <ButtonComp @handleClick="showChildNode = !showChildNode" charButton>{{showChildNode ? '-' : '+'}}</ButtonComp>
     </template>
     <template v-if="showChildNode && data.replies">
       <CommentComp v-for="post in data.replies.data.children" :data="post.data" :key="post.data.id"></CommentComp>
